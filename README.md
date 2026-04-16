@@ -5,18 +5,6 @@
 KeenKeeper helps you stay intentional about the relationships that matter most. Track your friends, log interactions, and never let an important connection go cold.
 
 ---
-
-## 🚀 Getting Started
-
-```bash
-npm install
-npm run dev
-```
-
-Then open [http://localhost:5173](http://localhost:5173) in your browser.
-
----
-
 ## 🛠 Technologies Used
 
 | Technology | Purpose |
@@ -44,34 +32,5 @@ Then open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## 📁 Project Structure
-
-```
-src/
-├── assets/          # Icons and logo images
-├── components/      # Reusable UI components (Navbar, Footer, FriendCard, Toast, LoadingSpinner)
-├── data/
-│   ├── friends.js   # Friend profiles data
-│   └── timelineStore.js  # In-memory session store for interactions
-└── pages/
-    ├── Home.jsx         # Friends grid + summary cards
-    ├── FriendDetails.jsx # Individual friend profile & check-in
-    ├── Timeline.jsx      # Chronological interaction log
-    ├── Stats.jsx         # Analytics donut chart
-    └── NotFound.jsx      # 404 page
-```
-
----
-
-## 📸 Pages Overview
-
-| Page | Path | Description |
-|---|---|---|
-| Home | `/` | Friends grid with summary stats |
-| Timeline | `/timeline` | Logged interactions feed |
-| Stats | `/stats` | Interaction analytics chart |
-| Friend Detail | `/friend/:id` | Profile + Quick Check-in |
-
----
 
 © 2026 KeenKeeper. All rights reserved.

@@ -12,17 +12,14 @@ const FriendDetails = () => {
   const [recentInteractions, setRecentInteractions] = useState([]);
 
   useEffect(() => {
-    const all = getTimelineEvents();
-    const mine = all.filter(e => e.friendId === friend?.id);
-    setRecentInteractions(mine);
+    if (friend) {
+      const all = getTimelineEvents();
+      setRecentInteractions(all.filter(e => e.friendId === friend.id));
+    }
   }, [friend?.id]);
 
   if (!friend) {
-    return (
-      <div className="text-center py-20 text-lg text-gray-400">
-        Friend not found
-      </div>
-    );
+    return <div className="text-center py-20 text-lg text-gray-400">Friend not found</div>;
   }
 
   const handleAction = (type) => {
@@ -33,35 +30,26 @@ const FriendDetails = () => {
       note: `${type.charAt(0).toUpperCase() + type.slice(1)} with ${friend.name}`,
     });
     setRecentInteractions(prev => [newEvent, ...prev]);
-    setToast({
-      message: `${type.charAt(0).toUpperCase() + type.slice(1)} logged successfully!`,
-      type: 'success',
-    });
+    setToast({ message: `${type.charAt(0).toUpperCase() + type.slice(1)} logged!`, type: 'success' });
   };
 
   const statusConfig = {
-    overdue: { text: 'Overdue', color: 'text-red-600 bg-red-100' },
-    'almost due': { text: 'Almost Due', color: 'text-amber-600 bg-amber-100' },
-    'on-track': { text: 'On Track', color: 'text-emerald-600 bg-emerald-100' },
+    overdue:     { text: 'Overdue',    color: 'text-red-600 bg-red-100' },
+    'almost due':{ text: 'Almost Due', color: 'text-amber-600 bg-amber-100' },
+    'on-track':  { text: 'On Track',   color: 'text-emerald-600 bg-emerald-100' },
   };
-
   const config = statusConfig[friend.status];
 
-  const typeIcon = (type) => {
-    if (type === 'call') return '📞';
-    if (type === 'text') return '💬';
-    if (type === 'video') return '🎥';
-    return '📌';
-  };
+  const typeIcon = (type) => ({ call: '📞', text: '💬', video: '🎥' }[type] ?? '📌');
 
   return (
-    <div className="bg-[#f3f5f4] py-10">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="grid lg:grid-cols-12 gap-6">
+    <div className="bg-[#f3f5f4] py-8 sm:py-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-12 gap-5">
 
           {/* LEFT */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
+            <div className="bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm">
               <div className="flex flex-col items-center text-center">
                 <img src={friend.picture} alt={friend.name} className="w-24 h-24 rounded-full object-cover mb-4" />
                 <h1 className="text-xl font-semibold text-gray-900">{friend.name}</h1>
@@ -80,19 +68,17 @@ const FriendDetails = () => {
           {/* RIGHT */}
           <div className="lg:col-span-7 space-y-4">
 
-            <div className="grid grid-cols-3 gap-4">
-              <div className="bg-white rounded-xl p-5 text-center border border-gray-100 shadow-sm">
-                <p className="text-xs text-gray-400">Days Since Contact</p>
-                <p className="text-2xl font-semibold mt-1 text-gray-900">{friend.days_since_contact}</p>
-              </div>
-              <div className="bg-white rounded-xl p-5 text-center border border-gray-100 shadow-sm">
-                <p className="text-xs text-gray-400">Goal (Days)</p>
-                <p className="text-2xl font-semibold mt-1 text-gray-900">{friend.goal}</p>
-              </div>
-              <div className="bg-white rounded-xl p-5 text-center border border-gray-100 shadow-sm">
-                <p className="text-xs text-gray-400">Next Due</p>
-                <p className="text-lg font-semibold mt-1 text-emerald-600">{friend.next_due_date}</p>
-              </div>
+            <div className="grid grid-cols-3 gap-3">
+              {[
+                { label: 'Days Since Contact', value: friend.days_since_contact, color: 'text-gray-900' },
+                { label: 'Goal (Days)',         value: friend.goal,              color: 'text-gray-900' },
+                { label: 'Next Due',            value: friend.next_due_date,     color: 'text-emerald-600' },
+              ].map(({ label, value, color }) => (
+                <div key={label} className="bg-white rounded-xl p-4 text-center border border-gray-100 shadow-sm">
+                  <p className="text-xs text-gray-400 leading-tight">{label}</p>
+                  <p className={`text-lg sm:text-2xl font-semibold mt-1 ${color} break-words`}>{value}</p>
+                </div>
+              ))}
             </div>
 
             <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm flex justify-between items-center">
@@ -100,31 +86,29 @@ const FriendDetails = () => {
                 <p className="text-xs text-gray-400">Relationship Goal</p>
                 <p className="text-base font-medium text-gray-900 mt-1">Connect every {friend.goal} days</p>
               </div>
-              <button className="text-xs text-gray-400 hover:text-gray-600 flex items-center gap-1">
-                <Edit2 size={14} /> Edit
-              </button>
+              <button className="text-xs text-gray-400 hover:text-gray-600 flex items-center gap-1"><Edit2 size={14} />Edit</button>
             </div>
 
             {/* Quick Check-in */}
             <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
               <h3 className="text-sm font-medium text-gray-600 mb-3">Quick Check-in</h3>
-              <div className="grid grid-cols-3 gap-4">
-                <button onClick={() => handleAction('call')} className="bg-gray-50 rounded-xl py-6 flex flex-col items-center gap-2 hover:bg-emerald-50 hover:ring-1 hover:ring-emerald-200 transition">
-                  <Phone size={22} className="text-emerald-500" />
+              <div className="grid grid-cols-3 gap-3">
+                <button onClick={() => handleAction('call')} className="bg-gray-50 rounded-xl py-5 flex flex-col items-center gap-2 hover:bg-emerald-50 hover:ring-1 hover:ring-emerald-200 transition">
+                  <Phone size={20} className="text-emerald-500" />
                   <span className="text-sm text-gray-700">Call</span>
                 </button>
-                <button onClick={() => handleAction('text')} className="bg-gray-50 rounded-xl py-6 flex flex-col items-center gap-2 hover:bg-blue-50 hover:ring-1 hover:ring-blue-200 transition">
-                  <MessageCircle size={22} className="text-blue-500" />
+                <button onClick={() => handleAction('text')} className="bg-gray-50 rounded-xl py-5 flex flex-col items-center gap-2 hover:bg-blue-50 hover:ring-1 hover:ring-blue-200 transition">
+                  <MessageCircle size={20} className="text-blue-500" />
                   <span className="text-sm text-gray-700">Text</span>
                 </button>
-                <button onClick={() => handleAction('video')} className="bg-gray-50 rounded-xl py-6 flex flex-col items-center gap-2 hover:bg-purple-50 hover:ring-1 hover:ring-purple-200 transition">
-                  <Video size={22} className="text-purple-500" />
+                <button onClick={() => handleAction('video')} className="bg-gray-50 rounded-xl py-5 flex flex-col items-center gap-2 hover:bg-purple-50 hover:ring-1 hover:ring-purple-200 transition">
+                  <Video size={20} className="text-purple-500" />
                   <span className="text-sm text-gray-700">Video</span>
                 </button>
               </div>
             </div>
 
-            {/* Recent Interactions — dynamic */}
+            {/* Recent Interactions */}
             <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
               <h3 className="text-sm font-medium text-gray-600 mb-3">Recent Interactions</h3>
               {recentInteractions.length > 0 ? (
@@ -144,7 +128,6 @@ const FriendDetails = () => {
                 <p className="text-sm text-gray-400 text-center py-6">No interactions yet. Use Quick Check-in above!</p>
               )}
             </div>
-
           </div>
         </div>
       </div>

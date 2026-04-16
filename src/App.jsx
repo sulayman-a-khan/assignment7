@@ -11,24 +11,17 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-gray-950">
-
-        {/* Navbar */}
         <Navbar />
-
-        {/* Page content */}
         <main className="flex-1 flex flex-col">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/"         element={<Home />} />
             <Route path="/timeline" element={<Timeline />} />
-            <Route path="/stats" element={<Stats />} />
+            <Route path="/stats"    element={<Stats />} />
             <Route path="/friend/:id" element={<FriendDetails />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="*"         element={<NotFound />} />
           </Routes>
         </main>
-
-        {/* Footer */}
         <Footer />
-
       </div>
     </Router>
   );

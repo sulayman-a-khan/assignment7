@@ -6,73 +6,71 @@ import LoadingSpinner from '../components/LoadingSpinner';
 
 const Home = () => {
   const [toast, setToast] = useState(null);
-  const [loadingFriends, setLoadingFriends] = useState(true);   // Only for friends section
+  const [loadingFriends, setLoadingFriends] = useState(true);
 
-  // Simulate loading only for the friends grid
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoadingFriends(false);
-    }, 700);
+    const timer = setTimeout(() => setLoadingFriends(false), 700);
     return () => clearTimeout(timer);
   }, []);
 
+  const total = friends.length;
+  const onTrack = friends.filter(f => f.status === 'on-track').length;
+  const needAttention = friends.filter(f => f.status === 'almost due').length;
+  const overdue = friends.filter(f => f.status === 'overdue').length;
+
   return (
     <div className="min-h-screen bg-slate-50">
-      
-      {/* ==================== BANNER SECTION ==================== */}
-      <div className="bg-white py-20 md:py-20 border-b">
+
+      {/* BANNER */}
+      <div className="bg-white py-16 md:py-20 border-b">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-5xl font-semibold tracking-tight text-gray-900">
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900">
             Friends to keep close in your life
           </h1>
-          
-          <p className="mt-6 text-md text-gray-600 mx-auto leading-relaxed">
-            Your personal shelf of meaningful connections. Browse, tend, and nurture 
+          <p className="mt-5 text-base text-gray-500 max-w-xl mx-auto leading-relaxed">
+            Your personal shelf of meaningful connections. Browse, tend, and nurture
             the relationships that matter most.
           </p>
-
-          <button 
+          <button
             onClick={() => setToast({ message: "Add Friend feature coming soon!", type: "success" })}
-            className="mt-6 bg-emerald-700 hover:bg-emerald-600 transition-all 
-                       text-white px-5 py-3 rounded-xl text-md font-medium 
-                       flex items-center gap-3 mx-auto shadow-lg shadow-emerald-900/20"
+            className="mt-6 bg-emerald-700 hover:bg-emerald-600 transition-all text-white px-6 py-3 rounded-xl text-sm font-medium flex items-center gap-2 mx-auto shadow-lg shadow-emerald-900/20"
           >
             + Add a Friend
           </button>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        
-        {/* Summary Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-          <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-            <p className="text-gray-500 text-sm">Total Friends</p>
-            <p className="text-4xl font-semibold text-gray-900 mt-2">24</p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+
+        {/* Summary Cards — centered text */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center">
+            <p className="text-gray-400 text-sm font-medium">Total Friends</p>
+            <p className="text-4xl font-semibold text-gray-900 mt-2">{total}</p>
           </div>
-          <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-            <p className="text-gray-500 text-sm">On Track</p>
-            <p className="text-4xl font-semibold text-emerald-600 mt-2">14</p>
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center">
+            <p className="text-gray-400 text-sm font-medium">On Track</p>
+            <p className="text-4xl font-semibold text-emerald-600 mt-2">{onTrack}</p>
           </div>
-          <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-            <p className="text-gray-500 text-sm">Need Attention</p>
-            <p className="text-4xl font-semibold text-amber-600 mt-2">5</p>
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center">
+            <p className="text-gray-400 text-sm font-medium">Need Attention</p>
+            <p className="text-4xl font-semibold text-amber-500 mt-2">{needAttention}</p>
           </div>
-          <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-            <p className="text-gray-500 text-sm">Interactions This Month</p>
-            <p className="text-4xl font-semibold text-purple-600 mt-2">12</p>
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center">
+            <p className="text-gray-400 text-sm font-medium">Overdue</p>
+            <p className="text-4xl font-semibold text-red-500 mt-2">{overdue}</p>
           </div>
         </div>
 
-        {/* Your Friends Section with Loading Spinner */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-semibold text-gray-900">Your Friends</h2>
+        {/* Friends Grid */}
+        <div className="mb-6">
+          <h2 className="text-2xl font-semibold text-gray-900">Your Friends</h2>
         </div>
 
         {loadingFriends ? (
           <LoadingSpinner />
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {friends.map(friend => (
               <FriendCard key={friend.id} friend={friend} />
             ))}

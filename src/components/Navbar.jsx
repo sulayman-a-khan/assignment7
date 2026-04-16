@@ -9,7 +9,7 @@ const Navbar = () => {
 
           {/* Logo */}
           <div className="flex items-center gap-2 flex-shrink-0">
-            <img src="/src/assets/logo.png" alt="KeenKeeper" className="h-8 w-auto" />
+            <img src="/logo.png" alt="KeenKeeper" className="h-8 w-auto" />
           </div>
 
           {/* Nav Links */}

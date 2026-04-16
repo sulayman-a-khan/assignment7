@@ -2,39 +2,32 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 text-center bg-gradient-to-br from-green-50 via-white to-green-100 relative overflow-hidden">
+    <div className="flex-1 flex items-center justify-center bg-white px-6 py-20">
+      <div className="text-center max-w-sm">
 
-      {/* Decorative soft green shapes */}
-      <div className="absolute w-[350px] h-[350px] bg-green-300/30 rounded-full blur-3xl top-10 left-10 animate-pulse"></div>
-      <div className="absolute w-[300px] h-[300px] bg-green-500/20 rounded-full blur-3xl bottom-10 right-10 animate-pulse"></div>
-
-      <div className="z-10 max-w-md bg-white/70 backdrop-blur-md border border-green-100 shadow-xl rounded-3xl p-10">
-
-        {/* 404 Text */}
-        <h1 className="text-[110px] font-extrabold text-green-600 leading-none">
+        {/* Big 404 */}
+        <h1 className="text-[120px] font-extrabold leading-none text-emerald-600 select-none">
           404
         </h1>
 
-        {/* Title */}
-        <h2 className="text-3xl font-bold text-gray-800 mt-3">
+        {/* Divider line */}
+        <div className="w-16 h-1 bg-emerald-500 rounded-full mx-auto mt-2 mb-6" />
+
+        {/* Message */}
+        <h2 className="text-2xl font-bold text-gray-800">
           Page Not Found
         </h2>
-
-        {/* Description */}
-        <p className="text-gray-600 mt-3 mb-8">
-          Oops! The page you're looking for doesn’t exist or has been moved.
+        <p className="text-gray-400 mt-3 text-sm leading-relaxed">
+          The page you're looking for doesn't exist or has been moved.
         </p>
 
         {/* Button */}
         <Link
           to="/"
-          className="inline-block px-8 py-4 rounded-2xl font-semibold text-white 
-          bg-green-600 hover:bg-green-700 
-          transition-all duration-300 shadow-lg hover:shadow-green-400/40"
+          className="inline-block mt-8 px-8 py-3 rounded-2xl font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition-all duration-200 shadow-md hover:shadow-emerald-300/40"
         >
-          🌿 Back to Home
+          ← Back to Home
         </Link>
-
       </div>
     </div>
   );

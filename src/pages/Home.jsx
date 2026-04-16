@@ -19,7 +19,7 @@ const Home = () => {
   const overdue = friends.filter(f => f.status === 'overdue').length;
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="flex-1 bg-slate-50">
 
       {/* BANNER */}
       <div className="bg-white py-16 md:py-20 border-b">
@@ -45,20 +45,20 @@ const Home = () => {
         {/* Summary Cards — centered text */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center">
-            <p className="text-gray-400 text-sm font-medium">Total Friends</p>
-            <p className="text-4xl font-semibold text-gray-900 mt-2">{total}</p>
+            <p className="text-4xl font-semibold text-gray-900">{total}</p>
+            <p className="text-gray-400 text-sm font-medium mt-2">Total Friends</p>
           </div>
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center">
-            <p className="text-gray-400 text-sm font-medium">On Track</p>
-            <p className="text-4xl font-semibold text-emerald-600 mt-2">{onTrack}</p>
+            <p className="text-4xl font-semibold text-emerald-600">{onTrack}</p>
+            <p className="text-gray-400 text-sm font-medium mt-2">On Track</p>
           </div>
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center">
-            <p className="text-gray-400 text-sm font-medium">Need Attention</p>
-            <p className="text-4xl font-semibold text-amber-500 mt-2">{needAttention}</p>
+            <p className="text-4xl font-semibold text-amber-500">{needAttention}</p>
+            <p className="text-gray-400 text-sm font-medium mt-2">Need Attention</p>
           </div>
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center">
-            <p className="text-gray-400 text-sm font-medium">Overdue</p>
-            <p className="text-4xl font-semibold text-red-500 mt-2">{overdue}</p>
+            <p className="text-4xl font-semibold text-red-500">{overdue}</p>
+            <p className="text-gray-400 text-sm font-medium mt-2">Overdue</p>
           </div>
         </div>
 

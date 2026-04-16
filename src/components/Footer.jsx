@@ -27,15 +27,15 @@ const Footer = () => {
             <div className="flex items-center justify-center gap-4 mt-4">
 
               <button className="w-11 h-11 rounded-full bg-white text-black flex items-center justify-center font-semibold hover:scale-110 transition">
-                <img src="src/assets/instagram.png" alt="instagram" />
+                <img src="/instagram.png" alt="instagram" />
               </button>
 
               <button className="w-11 h-11 rounded-full bg-white text-black flex items-center justify-center font-semibold hover:scale-110 transition">
-                <img src="src/assets/facebook.png" alt="facebook" />
+                <img src="/facebook.png" alt="facebook" />
               </button>
 
               <button className="w-11 h-11 rounded-full bg-white text-black flex items-center justify-center font-semibold hover:scale-110 transition">
-                <img src="src/assets/twitter.png" alt="twitter" />
+                <img src="/twitter.png" alt="twitter" />
               </button>
 
             </div>

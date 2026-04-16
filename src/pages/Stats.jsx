@@ -52,7 +52,7 @@ const Stats = () => {
     : data;
 
   return (
-    <div className="flex-1 flex flex-col w-full bg-white overflow-hidden font-sans">
+    <div className="flex-1 flex flex-col w-full bg-white font-sans">
       <main className="flex-1 flex flex-col px-4 sm:px-8 md:px-12 py-6 max-w-[1100px] mx-auto w-full min-h-0">
 
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1e293b] mb-4 shrink-0">

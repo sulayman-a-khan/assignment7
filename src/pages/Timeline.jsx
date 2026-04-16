@@ -23,16 +23,16 @@ const Timeline = () => {
 
   const getIcon = (type) => {
     switch (type) {
-      case 'call':  return <img src="src/assets/call.png"  alt="call"  className="w-8 h-8" />;
-      case 'text':  return <img src="src/assets/text.png"  alt="text"  className="w-8 h-8" />;
-      case 'video': return <img src="src/assets/video.png" alt="video" className="w-8 h-8" />;
+      case 'call':  return <img src="/call.png"  alt="call"  className="w-8 h-8" />;
+      case 'text':  return <img src="/text.png"  alt="text"  className="w-8 h-8" />;
+      case 'video': return <img src="/video.png" alt="video" className="w-8 h-8" />;
       case 'meetup': return <span className="text-3xl">🤝</span>;
       default:       return <span className="text-3xl">📌</span>;
     }
   };
 
   return (
-    <div className="bg-white min-h-0">
+    <div className="bg-white flex-1">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
 
         <h1 className="text-3xl sm:text-4xl font-semibold text-gray-900 mb-6">Timeline</h1>

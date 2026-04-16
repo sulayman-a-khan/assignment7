@@ -3,15 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-  html {
+  html, body {
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-}
-
-/* xs breakpoint for very small screens */
-@layer utilities {
-  @screen xs {
-    .xs\:inline { display: inline; }
   }
 }

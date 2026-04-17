@@ -32,7 +32,7 @@ const Timeline = () => {
   };
 
   return (
-    <div className="bg-white flex-1 w-full">
+    <div className="bg-white flex-1">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
 
         <h1 className="text-3xl sm:text-4xl font-semibold text-gray-900 mb-6">Timeline</h1>

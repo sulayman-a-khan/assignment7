@@ -24,12 +24,13 @@ const Navbar = () => {
                 to={to}
                 end={to === '/'}
                 className={({ isActive }) =>
-                  `flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-xl text-sm font-medium transition-all
+                  `flex items-center gap-1.5 rounded-xl text-sm font-medium transition-all
+                   px-2.5 py-2 sm:px-4 sm:py-1.5
                    ${isActive ? 'bg-emerald-700 text-white shadow-sm' : 'text-gray-600 hover:bg-gray-100'}`
                 }
               >
                 <Icon size={16} />
-                <span>{label}</span>
+                <span className="hidden sm:inline">{label}</span>
               </NavLink>
             ))}
           </div>

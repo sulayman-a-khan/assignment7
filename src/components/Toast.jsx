@@ -9,7 +9,7 @@ const Toast = ({ message, type = 'success', onClose }) => {
   return (
     <div style={{
       position: 'fixed',
-      top: '24px',
+      bottom: '24px',
       left: '50%',
       transform: 'translateX(-50%)',
       background: '#1f2937',
@@ -22,6 +22,7 @@ const Toast = ({ message, type = 'success', onClose }) => {
       display: 'flex',
       alignItems: 'center',
       gap: '10px',
+      whiteSpace: 'nowrap',
       animation: 'slideIn 0.2s ease',
     }}>
       <span style={{
